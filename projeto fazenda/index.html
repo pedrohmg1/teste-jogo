@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Sim: Ultimate Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+</head>
+<body>
+
+    <div id="ui-container">
+        <div id="stats-panel">
+            <div class="stat-row">
+                <span>⚡ Energia:</span>
+                <div class="bar-container"><div id="energy-bar"></div></div>
+            </div>
+            <div class="stat-row">
+                <span>💰 Dinheiro: $</span><span id="money-display">0</span>
+            </div>
+        </div>
+
+        <div id="quest-panel">
+            <strong>Missão Atual:</strong><br>
+            <span id="quest-text">Colete 10 Madeiras</span>
+        </div>
+
+        <div id="inventory-panel">
+            <div class="res-item">🪵 <span id="wood-count">0</span></div>
+            <div class="res-item">🪨 <span id="stone-count">0</span></div>
+        </div>
+    </div>
+
+    <div id="hotbar">
+        <div class="slot active" data-tool="0" onclick="selectTool(0)">
+            <span class="key">1</span> <div class="icon">✋</div> <span class="tooltip">Interagir</span>
+        </div>
+        <div class="slot" data-tool="1" onclick="selectTool(1)">
+            <span class="key">2</span> <div class="icon">🪓</div> <span class="tooltip">Machado</span>
+        </div>
+        <div class="slot" data-tool="2" onclick="selectTool(2)">
+            <span class="key">3</span> <div class="icon">⛏️</div> <span class="tooltip">Picareta</span>
+        </div>
+        <div class="slot" data-tool="3" onclick="selectTool(3)">
+            <span class="key">4</span> <div class="icon">🌱</div> <span class="tooltip">Plantar</span>
+        </div>
+        <div class="slot" data-tool="4" onclick="selectTool(4)">
+            <span class="key">5</span> <div class="icon">🏠</div> <span class="tooltip">Construir (-5 Mad)</span>
+        </div>
+        <div class="slot" data-tool="5" onclick="selectTool(5)">
+            <span class="key">6</span> <div class="icon">🛏️</div> <span class="tooltip">Dormir</span>
+        </div>
+    </div>
+
+    <div id="big-map-container" style="display: none;">
+        <div id="big-map-content">
+            <h2>Mapa do Mundo</h2>
+            <div style="width: 400px; height: 300px; background: green; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                (Simulação do Mapa Global)
+            </div>
+            <p>Pressione 'M' para fechar</p>
+        </div>
+    </div>
+
+    <script src="src/game.js"></script>
+
+    <script>
+        // Função Ponte entre HTML e Phaser
+        function selectTool(id) {
+            if(window.gameInstance) {
+                window.gameInstance.scene.scenes[0].setTool(id);
+                document.querySelectorAll('.slot').forEach(el => el.classList.remove('active'));
+                document.querySelector(`[data-tool="${id}"]`).classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

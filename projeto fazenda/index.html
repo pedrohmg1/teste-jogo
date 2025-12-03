@@ -55,7 +55,7 @@
     <div id="big-map-container" style="display: none;">
         <div id="big-map-content">
             <h2>Mapa do Mundo</h2>
-            <div style="width: 400px; height: 300px; background: green; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 400px; height: 300px; background: green; margin: 0 auto; display: flex; align-items: center; justify-content: center; border: 2px solid white;">
                 (Simulação do Mapa Global)
             </div>
             <p>Pressione 'M' para fechar</p>
@@ -65,7 +65,6 @@
     <script src="src/game.js"></script>
 
     <script>
-        // Função Ponte entre HTML e Phaser
         function selectTool(id) {
             if(window.gameInstance) {
                 window.gameInstance.scene.scenes[0].setTool(id);
